@@ -9,11 +9,11 @@ import graphics.SpriteSheet;
 import graphics.Sprite;
 import utils.Time;
 import Display.Display;
+import game.level.Level;
 import graphics.TextureAtlas;
 import io.Input;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -41,8 +41,9 @@ public class Game implements Runnable{
     private TextureAtlas            atlas;
     private SpriteSheet             sheet;
     private Sprite                  sprite;
-    
+    private Level                   lvl;
     public Player                  player;
+    
     public Game(){
         running = false;
         Display.create(WIDTH, HEIGHT, TITLE, CLEAR_COLOR, NUM_BUFFERS);
@@ -51,6 +52,7 @@ public class Game implements Runnable{
         Display.addInputListener(input);
         atlas = new TextureAtlas(ATLAS_FILE_NAME);
         player = new Player(300, 300, 2, 3, atlas);
+        lvl = new Level(atlas);
     }
     public synchronized void start(){
         if(running)
@@ -75,11 +77,15 @@ public class Game implements Runnable{
     }
     private void update(){ //физика, расчеты
         player.update(input);
+        lvl.update();
     }
     private void render(){
         Display.clear();
         graphics.setColor(Color.red);
+        
+        lvl.render(graphics);
         player.render(graphics);
+        lvl.renderGrass(graphics);
         //graphics.fillOval((int)(x+Math.sin(delta)*200), (int)y, (int)radius*2, (int)radius*2);
         //graphics.drawImage(atlas.cut(0, 0, 16, 16), (int)x+300, (int)y+300, null);
         //sprite.render(graphics, x, y);

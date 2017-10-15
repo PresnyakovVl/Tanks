@@ -62,17 +62,6 @@ public abstract class Display {
 	public static void clear() {
 		Arrays.fill(bufferData, clearColor);
 	}
-/*
-	public static void render() {
-		bufferGraphics.setColor(new Color(0xff0000ff));
-		bufferGraphics.fillOval((int) (350 + (Math.sin(delta) * 200)), (int) (250 + (Math.cos(delta)*Math.sin(-delta)/Math.cos(Math.cos(alpha)) * 200)), 100, 100);
-		//delta += 0.02f;
-                //alpha+=0.01f;
-                ((Graphics2D)bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                bufferGraphics.fillOval((int) (500 + (Math.sin(delta) * 200)), (int) (250 + (Math.cos(delta)*Math.sin(-delta)/Math.cos(Math.cos(alpha)) * 200)), 100, 100);
-                ((Graphics2D)bufferGraphics).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);    
-	}
-      */ 
 
 	public static void swapBuffers() {
 		Graphics g = bufferStrategy.getDrawGraphics();
